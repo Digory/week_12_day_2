@@ -1,4 +1,4 @@
-const PubSub = require('./helpers/pub_sub.js');
+const PubSub = require('../helpers/pub_sub.js');
 
 const SelectView = function(selectElement){
     this.selectElement = selectElement;
@@ -17,6 +17,7 @@ SelectView.prototype.bindEvents = function(){
 }
 
 SelectView.prototype.populateMenu = function(allInstruments){
+    console.log(allInstruments);
     allInstruments.forEach((instrument, index)=>{
         const option = document.createElement('option');
         option.textContent = instrument.name;
@@ -24,3 +25,5 @@ SelectView.prototype.populateMenu = function(allInstruments){
         this.selectElement.appendChild(option);
     });
 }
+
+module.exports = SelectView;

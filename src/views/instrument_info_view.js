@@ -1,4 +1,4 @@
-const PubSub = require('./helpers/pub_sub.js');
+const PubSub = require('../helpers/pub_sub.js');
 
 const InstrumentInfoView = function(container){
     this.container = container;
@@ -20,7 +20,7 @@ InstrumentInfoView.prototype.display = function(instrumentFamilyToShow){
     headingElement.textContent = instrumentFamilyToShow.name;
     paragraphElement.textContent = instrumentFamilyToShow.description;
     smallHeadingElement.textContent = "Instruments include:";
-    for(let instrument of instrumentFamilyToShow){
+    for(let instrument of instrumentFamilyToShow.instruments){
         const listElement = document.createElement('li');
         listElement.textContent = instrument;
         unorderedListElement.appendChild(listElement);
@@ -30,3 +30,5 @@ InstrumentInfoView.prototype.display = function(instrumentFamilyToShow){
     this.container.appendChild(smallHeadingElement);
     this.container.appendChild(unorderedListElement);
 };
+
+module.exports = InstrumentInfoView;
