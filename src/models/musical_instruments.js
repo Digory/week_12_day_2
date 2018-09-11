@@ -28,4 +28,17 @@ const MusicalInstruments = function() {
   ];
 };
 
-module.exports = InstrumentFamilies;
+MusicalInstruments.prototype.bindEvents = function(){
+  PubSub.publish('MusicalInstruments:all-instruments-ready', this.musicalInstruments);
+  PubSub.subscribe('SelectView:change', (event)=>{
+    const instrumentIndex = event.detail;
+    this.publishInstrumentDetails(instrumentIndex);
+  });
+}
+
+MusicalInstruments.prototype.publishInstrumentDetails = function(instrumentIndex){
+  const instrumentObject = this.musicalInstruments[instrumentIndex];
+  PubSub.publish('MusicalInstruments:clicked-instrument-ready', instrumentObject);
+}
+
+module.exports = MusicalInstruments;
